@@ -10,6 +10,7 @@ var enemyAttack = 12;
 
 
 var fight = function(enemyNames) {
+    while(enemyHealth > 0 ) {
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
     // if player chooses fight
     if (promptFight === "fight" || promptFight === "FIGHT") {
@@ -61,10 +62,14 @@ var fight = function(enemyNames) {
     //    ^ fight all enemy robots
     //    ^ Deafeat each enemy robot
     // "LOSE" - Player robot's health is zero or less
+    }
+    
  };
 
 // calling the function
 
 for(var i = 0; i < enemyNames.length; i++) {
-    fight(enemyNames[i]);
+    var pickedEnemyName = enemyNames[i];
+    enemyHealth = 50;
+    fight(pickedEnemyName);
 }
