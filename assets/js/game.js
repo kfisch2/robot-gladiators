@@ -9,7 +9,7 @@ var enemyHealth = 50;
 var enemyAttack = 12;
 
 
-var fight = function(enemyName) {
+var fight = function(enemyNames) {
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
     // if player chooses fight
     if (promptFight === "fight" || promptFight === "FIGHT") {
