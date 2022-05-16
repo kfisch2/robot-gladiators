@@ -18,33 +18,33 @@ var fight = function() {
         enemyHealth -= playerAttack;
         console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health points left.");
     
-    
-    // check enemy health status
-    if (enemyHealth <= 0) {
-        window.alert(enemyName + " has died!")
-    }
+                // check enemy health
+        if (enemyHealth <= 0) {
+            window.alert(enemyName + " has died!")
+        }
 
-    else {
-        window.alert(enemyName + " still has " + enemyHealth + " health points remaining.");
-    }
+        else {
+            window.alert(enemyName + " still has " + enemyHealth + " health points remaining.");
+        }
 
-    // remove player health when enemy attacks
-    playerHealth -= enemyAttack;
-    console.log(
-        enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
-    );
+        // remove player health when enemy attacks
+        playerHealth -= enemyAttack;
+        console.log(
+            enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+        );
 
-    // check player's status
-    if (playerHealth <= 0) {
+        // check player's health
+        if (playerHealth <= 0) {
         window.alert(playerName + " has died!");
-    }
+        }
 
-    else { 
-        window.alert(playerName + " has " + playerHealth + " health remaining.");
-    }
+        else { 
+            window.alert(playerName + " has " + playerHealth + " health remaining.");
+        }
 
-    }
-    // if player choose skip
+        }
+
+    // if player chooses skip
     else if (promptFight === "SKIP" || promptFight === "skip") {
         window.alert(playerName + " has chosen to skip the fight!");
     }
@@ -52,6 +52,8 @@ var fight = function() {
     else {
         window.alert("Please choose a valid option. Try again");
     }
+    
+    
  };
 
 // calling the function
