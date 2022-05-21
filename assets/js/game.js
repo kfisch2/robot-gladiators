@@ -1,3 +1,8 @@
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+  return value;
+}
+
 var playerName = window.prompt("What is your robot's name?");
 var playerHealth = 100;
 var playerAttack = 10;
@@ -8,7 +13,6 @@ var enemyHealth = 50;
 var enemyAttack = 12;
 
 // fight function (now with parameter for enemy's name) 
-
 var fight = function(enemyName) {
   while (playerHealth > 0 && enemyHealth > 0) {
     // ask player if they'd like to fight or run
@@ -23,21 +27,14 @@ var fight = function(enemyName) {
       if (confirmSkip) {
         window.alert(playerName + ' has decided to skip this fight. Goodbye!');
         // subtract money from playerMoney for skipping
-        playerMoney = Math.max(0, playerMoney - 10);
+        playerMoney = playerMoney - 10;
         console.log("playerMoney", playerMoney)
         break;
-      } else {
-        fight(enemyName);
       }
-    } else if (promptFight != 'fight' && promptFight != 'FIGHT') {
-        window.alert("Invalid input. Please enter FIGHT or SKIP");
-        fight();
-        break;
-      };
-    
+    }
 
     // remove enemy's health by subtracting the amount set in the playerAttack variable
-    enemyHealth = Math.max(0, enemyHealth - playerAttack);
+    enemyHealth = enemyHealth - playerAttack;
     console.log(
       playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
     );
@@ -56,7 +53,7 @@ var fight = function(enemyName) {
     }
 
     // remove players's health by subtracting the amount set in the enemyAttack variable
-    playerHealth = Math.max(0, playerHealth - enemyAttack);
+    playerHealth = playerHealth - enemyAttack;
     console.log(
       enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
     );
@@ -90,10 +87,8 @@ var startGame = function() {
       var pickedEnemyName = enemyNames[i];
 
       // reset enemyHealth before starting new fight
-      // enemy health ranges from 40 to 60
-      // Math.random()*21 gives us range from 0 to 20.xx, adding 40 gives us a range from 40 to 60
-      // Math.floor() rounds down
-      enemyHealth = Math.floor(Math.random() * 21 ) + 40;
+      // previously enemyHealth = 50
+      enemyHealth = randomNumber(40, 60);
 
       // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
       fight(pickedEnemyName);
