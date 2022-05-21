@@ -53,7 +53,8 @@ var enemyInfo = [
 // fight function (now with parameter for enemy's name) 
 
 var fight = function(enemy) {
-  console.log(enemy)
+  console.log(playerInfo);
+  console.log(enemy);
   while (playerInfo.health > 0 && enemy.health > 0) {
     // ask player if they'd like to fight or run
     var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
@@ -73,11 +74,11 @@ var fight = function(enemy) {
       }
     }
 
-    // remove enemy's health by subtracting the amount set in the playerAttack variable
-    //replacing enemyHealth = Math.max(0, enemyHealth - playerAttack);
+    // remove enemy's health by subtracting the amount set in the playerInfo.attack variable
+    //replacing enemy.health = Math.max(0, enemy.health - playerInfo.attack);
 
-    var damage = randomNumber(playerAttack - 3, playerAttack);
-    enemyHealth = Math.max(0, enemyHealth - damage);
+    var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
+    enemy.health = Math.max(0, enemy.health - damage);
 
     console.log(
       playerInfo.name + ' attacked ' + enemy.name + '. ' + enemy.name + ' now has ' + enemy.health + ' health remaining.'
@@ -96,12 +97,12 @@ var fight = function(enemy) {
       window.alert(enemy.name + ' still has ' + enemy.health + ' health left.');
     }
 
-    // remove players's health by subtracting the amount set in the enemyAttack variable
-    //replacing playerHealth = Math.max(0, playerHealth - enemyAttack);
+    // remove players's health by subtracting the amount set in the enemy.attack variable
+    //replacing playerInfo.health = Math.max(0, playerInfo.health - enemy.attack);
 
     // redefine variable at this point in the function
-    var damage = randomNumber(enemyAttack - 3, enemyAttack);
-    playerHealth = Math.max(0, playerHealth - damage);
+    var damage = randomNumber(enemy.attack - 3, enemy.attack);
+    playerInfo.health = Math.max(0, playerInfo.health - damage);
     console.log(
       enemy.name + ' attacked ' + playerInfo.name + '. ' + playerInfo.name + ' now has ' + playerInfo.health + ' health remaining.'
     );
