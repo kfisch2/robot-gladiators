@@ -3,36 +3,46 @@ var randomNumber = function(min, max) {
   return value;
 };
 
+var fightOrSkip = function () {
+  var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
+    promptFight.toLocaleLowerCase();
+    // if player picks "skip" confirm and then stop the loop
+    if (promptFight === 'skip') { 
+      // confirm player wants to skip
+        // subtract money from playerInfo.money for skipping
+        playerInfo.money = Math.max(0, playerInfo.money - 5);
+        console.log("playerInfo.money", playerInfo.money);
+        return true;
+      };
 
+    if (promptFight != 'fight' && promptFight != 'skip') {
+      window.alert("You did not provide a valid input. Try again.");
+      return fightOrSkip();
+    } else {
+      window.alert("You have chosen to fight!");
+    };
+  return false;
+};
+
+// fix fight/skip bug
 
 // fight function (now with parameter for enemy's name) 
 
 var fight = function(enemy) {
-  console.log(playerInfo);
-  console.log(enemy);
+  // give user a second chance to fight instead of skip
+  // costs 5 dollars to enter skip, another 5 dollars to verify the skip; total cost is 10
+  // Being outside of the while loop prevents the user from being asked to fight or skip after each round
+  
+
   while (playerInfo.health > 0 && enemy.health > 0) {
-    // ask player if they'd like to fight or run
-    var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
-
-    // if player picks "skip" confirm and then stop the loop
-    if (promptFight === 'skip' || promptFight === 'SKIP') { 
-      // confirm player wants to skip
-      var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-
-      // if yes (true), leave fight
-      if (confirmSkip) {
-        window.alert(playerInfo.name + ' has decided to skip this fight. Goodbye!');
-        // subtract money from playerInfo.money for skipping
-        playerInfo.money = Math.max(0, playerInfo.money - 10);
-        console.log("playerInfo.money", playerInfo.money)
-        break;
-      }
-    } // else if statement with 'fight' input
-    
-    
+    console.log(playerInfo);
+    console.log(enemy);
+    // if player picks "skip" confirm and then stop the loop    
     // remove enemy's health by subtracting the amount set in the playerInfo.attack variable
     //replacing enemy.health = Math.max(0, enemy.health - playerInfo.attack);
-
+    if (fightOrSkip()) {
+      break;
+    };
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
     enemy.health = Math.max(0, enemy.health - damage);
 
@@ -177,7 +187,7 @@ var shop = function() {
 // player.name bug fix
 var getPlayerName = function () {
   var name = "";
-  window.prompt("What is the name of your bot?");
+  
   while (name === null || name === "") {
     name = prompt("What is the name of your bot?");
   };
