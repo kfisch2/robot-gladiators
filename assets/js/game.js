@@ -148,6 +148,21 @@ var endGame = function() {
     window.alert("You've lost your robot in battle!");
   }
 
+  // retrieve current highscore from localStorage
+  var highScore = localStorage.getItem("highscore");
+  // check to see if high score exists; if not, player info stored 
+  if (highScore === null) {
+    highScore = 0;
+  };
+  // compare to player score
+  if (playerInfo.money > highScore) {
+    localStorage.setItem("name", playerInfo.name);
+    localStorage.setItem("highscore", playerInfo.money);
+    window.alert("You beat the high score!");
+  // if current > player, alert player they did not beat the high score
+  } else {
+    window.alert("You did not beat the high score :( ");
+  };
   // ask player if they'd like to play again
   var playAgainConfirm = window.confirm('Would you like to play again?');
 
@@ -200,12 +215,12 @@ var getPlayerName = function () {
 var playerInfo = {
   name: getPlayerName(),
   health: 100,
-  attack: 10,
-  money: 10,
+  attack: 100,
+  money: 100,
   reset: function () {
     this.health = 100;
-    this.money = 10;
-    this.attack = 10;
+    this.money = 100;
+    this.attack = 100;
   },
 
   refillHealth: function() {
